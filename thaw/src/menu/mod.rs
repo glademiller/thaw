@@ -128,18 +128,20 @@ where
     view! {
         <crate::_binder::Binder>
             {trigger_children} <Follower slot show=is_show_menu placement=position auto_height=true>
-                <div
-                    class=class_list![
-                        "thaw-menu",
-                        move || appearance.get().map(|a| format!("thaw-menu--{}", a.as_str())),
-                        class
-                    ]
-                    node_ref=menu_ref
-                    on:mouseenter=on_mouse_enter
-                    on:mouseleave=on_mouse_leave
-                >
-                    <Provider value=menu_injection>{children()}</Provider>
-                </div>
+                <Provider value=menu_injection>
+                        <div
+                            class=class_list![
+                                "thaw-menu",
+                                move || appearance.get().map(|a| format!("thaw-menu--{}", a.as_str())),
+                                class
+                            ]
+                            node_ref=menu_ref
+                            on:mouseenter=on_mouse_enter
+                            on:mouseleave=on_mouse_leave
+                        >
+                            {children()}
+                        </div>
+                </Provider>
             </Follower>
         </crate::_binder::Binder>
     }
